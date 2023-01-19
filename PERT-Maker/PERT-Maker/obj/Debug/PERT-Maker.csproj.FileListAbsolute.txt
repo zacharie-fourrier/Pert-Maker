@@ -1,0 +1,10 @@
+Z:\Pert-Maker\PERT-Maker\PERT-Maker\bin\Debug\PERT-Maker.exe.config
+Z:\Pert-Maker\PERT-Maker\PERT-Maker\bin\Debug\PERT-Maker.exe
+Z:\Pert-Maker\PERT-Maker\PERT-Maker\bin\Debug\PERT-Maker.pdb
+Z:\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.csproj.AssemblyReference.cache
+Z:\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT_Maker.Form1.resources
+Z:\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT_Maker.Properties.Resources.resources
+Z:\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.csproj.GenerateResource.cache
+Z:\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.csproj.CoreCompileInputs.cache
+Z:\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.exe
+Z:\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.pdb
