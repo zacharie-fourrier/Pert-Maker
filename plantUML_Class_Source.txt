@@ -1,0 +1,41 @@
+@startuml
+!theme black-knight
+skinparam classAttributeIconSize 0
+
+class Project {
++String projectName
++String projectDesc
++BindingList<Task> tasks
++unsigned float duration
++String timeUnit
++String timeUnitShort
++Task endTask
+
++Project()
++newTask(Task)
++getTaskByName(String): Task
++getCriticalPath(): List[Task]
++toString(): String
+-calculateDuration()
+}
+
+class Task {
++String name
++unsigned float duration
+-List<Task> dependencies
+
++Task(String Duration)
++getEarliestStart(): float
++getLatestStart(): float
++getEarliestEnd(): float
++getLatestEnd(): float
++getDependencies(): List<Task>
++toString(): String
+}
+
+note top of Project : La durée doit être recalculée à chaque Tache ajoutée
+
+note bottom of Task : Calcul des durées par récursivité dans les dépendances
+
+Project "0..n" *- Task : Composes
+@enduml
