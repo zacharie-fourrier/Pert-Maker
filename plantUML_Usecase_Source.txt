@@ -1,0 +1,36 @@
+@startuml
+!theme black-knight
+
+skinparam actorStyle awesome
+left to right direction
+
+actor User as u
+
+package Project {
+usecase "Créer un projet" as UC1.1
+usecase "Ajouter des taches" as UC1.2
+usecase "Calculer la durée" as UC1.3
+usecase "Supprimer le projet" as UC1.4
+}
+
+u --> UC1.1
+u --> UC1.2
+UC1.2 -> UC1.3
+u --> UC1.4
+
+package Task {
+usecase "Créer une tache" as UC2.1
+usecase "Editer la tache" as UC2.2
+usecase "Supprimer la tache" as UC2.3
+}
+
+u --> UC2.1
+u --> UC2.2
+u --> UC2.3
+UC1.4 --> UC2.3 : supprimer les taches filles
+
+package UI {
+usecase "Afficher le diagramme PERT" as UC3.1
+usecase "Afficher le tableau d'avancement" as UC3.2
+}
+@enduml
