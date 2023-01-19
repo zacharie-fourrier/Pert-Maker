@@ -9,7 +9,7 @@ class Project {
 +unsigned float duration
 +String timeUnit
 +String timeUnitShort
-+Task endTask
+-Task endTask
 
 +Project()
 +newTask(Task)
@@ -17,6 +17,7 @@ class Project {
 +getCriticalPath(): List[Task]
 +toString(): String
 -calculateDuration()
+-calulateEndTask()
 }
 
 class Task {
