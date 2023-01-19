@@ -8,3 +8,14 @@ Z:\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.csproj.GenerateResource
 Z:\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.csproj.CoreCompileInputs.cache
 Z:\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.exe
 Z:\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.pdb
+E:\Documents\GitHub\Pert-Maker\PERT-Maker\PERT-Maker\bin\Debug\PERT-Maker.exe.config
+E:\Documents\GitHub\Pert-Maker\PERT-Maker\PERT-Maker\bin\Debug\PERT-Maker.exe
+E:\Documents\GitHub\Pert-Maker\PERT-Maker\PERT-Maker\bin\Debug\PERT-Maker.pdb
+E:\Documents\GitHub\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.csproj.AssemblyReference.cache
+E:\Documents\GitHub\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.csproj.SuggestedBindingRedirects.cache
+E:\Documents\GitHub\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT_Maker.Form1.resources
+E:\Documents\GitHub\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT_Maker.Properties.Resources.resources
+E:\Documents\GitHub\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.csproj.GenerateResource.cache
+E:\Documents\GitHub\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.csproj.CoreCompileInputs.cache
+E:\Documents\GitHub\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.exe
+E:\Documents\GitHub\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.pdb
