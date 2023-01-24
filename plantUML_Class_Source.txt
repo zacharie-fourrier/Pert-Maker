@@ -34,9 +34,23 @@ class Task {
 +toString(): String
 }
 
+class "Probabilistic Task" {
++float mu
++float sigma
+}
+
+class "Probabilistic Project" {
+-float mu
+-float sigma
+
++computeProbabilities()
+}
+
 note top of Project : La durée doit être recalculée à chaque Tache ajoutée
 
 note bottom of Task : Calcul des durées par récursivité dans les dépendances
 
 Project "0..n" *- Task : Composes
+"Probabilistic Task" --|> Task
+"Probabilistic Project" --|> Project
 @enduml
