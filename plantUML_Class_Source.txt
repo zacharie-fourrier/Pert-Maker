@@ -22,8 +22,10 @@ class Project {
 
 class Task {
 +String name
-+unsigned float duration
++float duration
++uint workforce
 -List<Task> dependencies
+-List<Task> requirements
 
 +Task(String Duration)
 +getEarliestStart(): float

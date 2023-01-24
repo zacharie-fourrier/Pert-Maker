@@ -12,9 +12,19 @@ namespace PERT_Maker
 {
     public partial class Form1 : Form
     {
+        public List<int> openedProjects;
+
         public Form1()
         {
+
             InitializeComponent();
         }
+
+        private void FileNewProject_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e) => Application.Exit();
     }
 }
