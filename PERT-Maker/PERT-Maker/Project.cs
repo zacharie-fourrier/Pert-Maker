@@ -37,9 +37,40 @@ namespace PERT_Maker
             return null;
         }
 
-        public List<Task> getCriticalPath()
+        public List<List<Task>> getCriticalPath(List<Task> listTask = null) // NOT FINISHED
         {
+            Task task;
+            if (listTask == null) {
+                if (endTask == null) calculateEndTask();
+                task = endTask;
+            } else
+            {
+                task = listTask[listTask.Count() - 1];
+            }
 
+            if (task.getDependencies() == null)
+            {
+                List<List<Task>> listListTask = new List<List<Task>>();
+                listListTask.Add(listTask);
+                return listListTask;
+            }
+
+            foreach(Task t in task.getDependencies())
+            {
+                if((t.getEarliestStart() - t.getLatestStart()) == 0)
+                {
+                    if (listTask == null) listTask = new List<Task>();
+                    listTask.Add(t);
+                    if(task == endTask)
+                    {
+                        // DO THE MERGE OF CRITICAL PATHS
+                    } else
+                    {
+                        return getCriticalPath(listTask);
+                    }
+                }
+            }
+            return null;
         }
 
         private void calculateDuration()
