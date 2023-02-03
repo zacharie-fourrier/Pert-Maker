@@ -39,10 +39,11 @@ namespace PERT_Maker
             this.Quit = new System.Windows.Forms.ToolStripMenuItem();
             this.ProjectPanel = new System.Windows.Forms.Panel();
             this.MainPanel = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.Warnings = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1.SuspendLayout();
             this.ProjectPanel.SuspendLayout();
-            this.MainPanel.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -52,7 +53,7 @@ namespace PERT_Maker
             this.FileToolMenu});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1216, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1216, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -68,7 +69,7 @@ namespace PERT_Maker
             this.FileToolMenu.Image = ((System.Drawing.Image)(resources.GetObject("FileToolMenu.Image")));
             this.FileToolMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FileToolMenu.Name = "FileToolMenu";
-            this.FileToolMenu.Size = new System.Drawing.Size(38, 22);
+            this.FileToolMenu.Size = new System.Drawing.Size(46, 24);
             this.FileToolMenu.Text = "File";
             // 
             // FileNewProject
@@ -76,7 +77,7 @@ namespace PERT_Maker
             this.FileNewProject.Name = "FileNewProject";
             this.FileNewProject.ShortcutKeyDisplayString = "";
             this.FileNewProject.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.FileNewProject.Size = new System.Drawing.Size(183, 22);
+            this.FileNewProject.Size = new System.Drawing.Size(228, 26);
             this.FileNewProject.Text = "New Project";
             this.FileNewProject.Click += new System.EventHandler(this.FileNewProject_Clicked);
             // 
@@ -84,28 +85,28 @@ namespace PERT_Maker
             // 
             this.loadProjectToolStripMenuItem.Name = "loadProjectToolStripMenuItem";
             this.loadProjectToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.loadProjectToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.loadProjectToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
             this.loadProjectToolStripMenuItem.Text = "Load Project";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
             this.saveAsToolStripMenuItem.Text = "Export";
             // 
             // Quit
             // 
             this.Quit.Name = "Quit";
             this.Quit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.Quit.Size = new System.Drawing.Size(183, 22);
+            this.Quit.Size = new System.Drawing.Size(228, 26);
             this.Quit.Text = "Quit";
             this.Quit.Click += new System.EventHandler(this.QuitApp);
             // 
@@ -119,28 +120,34 @@ namespace PERT_Maker
             // 
             // MainPanel
             // 
-            this.MainPanel.Controls.Add(this.tabPage1);
             this.MainPanel.Location = new System.Drawing.Point(4, 4);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.SelectedIndex = 0;
             this.MainPanel.Size = new System.Drawing.Size(1185, 539);
             this.MainPanel.TabIndex = 0;
             // 
-            // tabPage1
+            // statusStrip1
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1177, 513);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Warnings});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 566);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1216, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // Warnings
+            // 
+            this.Warnings.Name = "Warnings";
+            this.Warnings.Size = new System.Drawing.Size(0, 18);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 588);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ProjectPanel);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -150,7 +157,8 @@ namespace PERT_Maker
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ProjectPanel.ResumeLayout(false);
-            this.MainPanel.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,8 +174,9 @@ namespace PERT_Maker
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.Panel ProjectPanel;
         private System.Windows.Forms.TabControl MainPanel;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ToolStripMenuItem Quit;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel Warnings;
     }
 }
 
