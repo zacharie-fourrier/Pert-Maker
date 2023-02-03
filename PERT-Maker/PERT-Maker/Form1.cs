@@ -29,17 +29,21 @@ namespace PERT_Maker
                 const string filename = @"./Data/config.json";
                 string text = File.ReadAllText(filename);
                 openedProjects = JsonSerializer.Deserialize<List<string>>(text);
+                Warnings.Text = "Loaded ./Data/config.json";
             }
             catch(Exception ex)
             {
                 Console.Write(ex);
-                //CREATE ./Data/config.json HERE
+                Warnings.Text = "Couldn't find config.json, creating it now...";
+                File.Create(@"./Data/config.json");
+                Warnings.Text = "Create config files, you can creatte or import projects now.";
             }
 
             foreach(string s in openedProjects)
             {
                 TabPage newTab = new TabPage(s);
                 MainPanel.TabPages.Add(newTab);
+
             }
         }
 
@@ -48,7 +52,12 @@ namespace PERT_Maker
             Console.WriteLine("bruh");
         }
 
-        private void QuitApp(object sender, EventArgs e) => Application.Exit();
+        private void QuitApp(object sender, EventArgs e)
+        {
+            Warnings.Text = "Preparing for shutdown";
+            JSONFileUtils.WriteJSON(openedProjects, @"./Data/config.json");
+            Application.Exit();
+        }
 
         //private void CreateProjectTab(Project p)
         //{
