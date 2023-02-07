@@ -11,17 +11,21 @@ namespace PERT_Maker
 {
     class JSONFileUtils
     {
-        //private static readonly JsonSerializerOptions _options
-        //  = new () { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
+        private static readonly JsonSerializerOptions _options
+          = new JsonSerializerOptions() {
+              DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+          };
 
 
         public static void WriteJSON(object obj, string fileName)
         {
-            /*var options = new JsonSerializerOptions(_options)
+            var options = new JsonSerializerOptions(_options)
             {
-                WriteIndented = true
-            };*/
-            var jsonString = JsonSerializer.Serialize(obj);
+                WriteIndented = true,
+                IncludeFields = true
+            };
+            var jsonString = JsonSerializer.Serialize(obj, options);
+            //Console.WriteLine(jsonString);
             File.WriteAllText(fileName, jsonString);
         }
     }

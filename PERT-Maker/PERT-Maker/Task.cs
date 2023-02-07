@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PERT_Maker
 {
-    internal class Task
+    public class Task
     {
         public String name;
         public float duration;

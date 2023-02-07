@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PERT_Maker
 {
-    internal class Project
+    public class Project
     {
         public String projectName;
         public String projectDesc;

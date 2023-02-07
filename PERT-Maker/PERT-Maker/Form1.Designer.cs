@@ -87,6 +87,7 @@ namespace PERT_Maker
             this.loadProjectToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.loadProjectToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
             this.loadProjectToolStripMenuItem.Text = "Load Project";
+            this.loadProjectToolStripMenuItem.Click += new System.EventHandler(this.loadProjectToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -120,10 +121,11 @@ namespace PERT_Maker
             // 
             // MainPanel
             // 
-            this.MainPanel.Location = new System.Drawing.Point(4, 4);
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Location = new System.Drawing.Point(0, 0);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.SelectedIndex = 0;
-            this.MainPanel.Size = new System.Drawing.Size(1185, 539);
+            this.MainPanel.Size = new System.Drawing.Size(1192, 546);
             this.MainPanel.TabIndex = 0;
             // 
             // statusStrip1
@@ -131,16 +133,16 @@ namespace PERT_Maker
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Warnings});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 564);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 566);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1216, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(1216, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // Warnings
             // 
             this.Warnings.Name = "Warnings";
-            this.Warnings.Size = new System.Drawing.Size(0, 18);
+            this.Warnings.Size = new System.Drawing.Size(0, 16);
             // 
             // Form1
             // 

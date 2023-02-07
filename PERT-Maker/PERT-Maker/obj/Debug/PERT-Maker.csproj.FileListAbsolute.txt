@@ -47,3 +47,4 @@ D:\Applications\Pert-Maker\PERT-Maker\PERT-Maker\bin\Debug\System.Text.Json.xml
 D:\Applications\Pert-Maker\PERT-Maker\PERT-Maker\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Applications\Pert-Maker\PERT-Maker\PERT-Maker\bin\Debug\System.ValueTuple.xml
 D:\Applications\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT-Maker.csproj.CopyComplete
+D:\Applications\Pert-Maker\PERT-Maker\PERT-Maker\obj\Debug\PERT_Maker.CreateProject.resources

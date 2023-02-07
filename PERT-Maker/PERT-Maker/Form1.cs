@@ -14,42 +14,85 @@ using System.Windows.Forms;
 using System.Text.Json;
 using System.IO;
 using System.Text.Json.Serialization;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace PERT_Maker
 {
     public partial class Form1 : Form
     {
-        public List<String> openedProjects = new List<string>();
+        public List<Project> openedProjects = new List<Project>();
 
         public Form1()
         {
             InitializeComponent();
             try
             {
-                const string filename = @"./Data/config.json";
+                string filename = @"./Data/config.json";
                 string text = File.ReadAllText(filename);
-                openedProjects = JsonSerializer.Deserialize<List<string>>(text);
-                Warnings.Text = "Loaded ./Data/config.json";
+                if (text.Length > 0)
+                {
+                    List<string> ls = JsonSerializer.Deserialize<List<string>>(text);
+                    Warnings.Text = "Loaded ./Data/config.json";
+                    if(ls.Count == 0) { return; }
+                    foreach (string file in ls)
+                    {
+                        filename = @"./Data/" + file + ".json";
+                        Console.WriteLine(filename);
+                        text = File.ReadAllText(filename);
+                        var options = new JsonSerializerOptions
+                        {
+                            IncludeFields = true,
+                        };
+                        openedProjects.Add(JsonSerializer.Deserialize<Project>(text, options));
+                    }
+                }
+                else
+                {
+                    Warnings.Text = "Config file is empty, load a project to start working";
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.Write(ex);
                 Warnings.Text = "Couldn't find config.json, creating it now...";
-                File.Create(@"./Data/config.json");
-                Warnings.Text = "Create config files, you can creatte or import projects now.";
+                string newConfig = "[]";
+                File.WriteAllText(@"./Data/config.json", newConfig);
+                Warnings.Text = "Created config files, you can create or import projects now.";
             }
 
-            foreach(string s in openedProjects)
+            foreach (Project p in openedProjects)
             {
-                TabPage newTab = new TabPage(s);
+                TabPage newTab = new TabPage(p.projectName);
                 MainPanel.TabPages.Add(newTab);
+            }
 
+            string folder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\Data\";
+            string filter = "*.json";
+            string[] files = Directory.GetFiles(folder, filter);
+            foreach (string f in files)
+            {
+                Regex rx = new Regex(@".*\\(?<filename>[\w|\s]+).json",
+                RegexOptions.Compiled | RegexOptions.IgnoreCase);
+                MatchCollection matches = rx.Matches(f);
+                GroupCollection groups = matches[0].Groups;
+                string filename = groups["filename"].Value;
+                foreach (Project p in openedProjects)
+                {
+                    if (filename != p.projectName && filename != "config")
+                    {
+                        //loadProjectToolStripMenuItem.DropDownItems.Add(filename);
+                        //Doesnt seem to work and is placed in a weird spot
+                    }
+                }
             }
         }
 
         private void FileNewProject_Clicked(object sender, EventArgs e)
         {
-            Console.WriteLine("bruh");
+            CreateProject form = new CreateProject();
+            form.Show();
+
         }
 
         private void QuitApp(object sender, EventArgs e)
@@ -59,9 +102,14 @@ namespace PERT_Maker
             Application.Exit();
         }
 
-        //private void CreateProjectTab(Project p)
-        //{
+        private void CreateProjectTab(Project p)
+        {
+            //MainPanel.TabPages.Add(p.projectName);
+        }
+
+        private void loadProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             
-        //}
+        }
     }
 }
