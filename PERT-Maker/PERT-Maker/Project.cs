@@ -9,41 +9,37 @@ namespace PERT_Maker
 {
     public class Project
     {
-        public String projectName;
-        public String projectDesc;
-        public BindingList<Task> tasks;
-        public float duration;
-        public string timeUnit;
-        public string timeUnitShort;
-        private Task endTask;
+        public String ProjectName { get; set; }
+        public String ProjectDesc { get; set; }
+        public BindingList<Task> Tasks { get; set; }
+        public float Duration { get; set; }
+        public string TimeUnit { get; set; }
+        public string TimeUnitShort { get; set; }
+        private Task EndTask { get; set; }
 
-        public Project(String name)
+        public void NewTasks(Task t)
         {
-            this.projectName = name;
-        }
-        public void newTasks(Task t)
-        {
-            tasks.Add(t);
-            calculateDuration();
-            calculateEndTask();
+            Tasks.Add(t);
+            CalculateDuration();
+            CalculateEndTask();
         }
 
-        public Task getTaskByName(String name)
+        public Task GetTaskByName(String name)
         {
-            foreach(Task t in tasks)
+            foreach(Task t in Tasks)
             {
                 if (t.name == name) return t;
             }
             return null;
         }
 
-        public List<List<Task>> getCriticalPath(List<Task> listTask = null)
+        public List<List<Task>> GetCriticalPath(List<Task> listTask = null)
         {
             Task task;
             List<List<Task>> finalList = new List<List<Task>>();
             if (listTask == null) {
-                if (endTask == null) calculateEndTask();
-                task = endTask;
+                if (EndTask == null) CalculateEndTask();
+                task = EndTask;
             } else
             {
                 task = listTask[listTask.Count() - 1];
@@ -62,32 +58,32 @@ namespace PERT_Maker
                 {
                     if (listTask == null) listTask = new List<Task>();
                     listTask.Add(t);
-                    finalList.Add(getCriticalPath(listTask)[0]);
+                    finalList.Add(GetCriticalPath(listTask)[0]);
                 }
             }
             return finalList;
         }
 
-        private void calculateDuration()
+        private void CalculateDuration()
         {
-            if (endTask == null) calculateEndTask();
-            duration = endTask.getEarliestEnd();
+            if (EndTask == null) CalculateEndTask();
+            Duration = EndTask.getEarliestEnd();
         }
 
-        private void calculateEndTask()
+        private void CalculateEndTask()
         {
             bool final = true;
 
-            foreach (Task t in tasks)
+            foreach (Task t in Tasks)
             {
-                foreach (Task T in tasks)
+                foreach (Task T in Tasks)
                 {
                     foreach(Task d in T.getDependencies())
                     {
                         if (d == t) final = false;
                     }
                 }
-                if (final == true) endTask = t;
+                if (final == true) EndTask = t;
             }
         }
     }

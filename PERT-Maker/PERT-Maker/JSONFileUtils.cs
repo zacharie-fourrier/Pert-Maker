@@ -12,10 +12,7 @@ namespace PERT_Maker
     class JSONFileUtils
     {
         private static readonly JsonSerializerOptions _options
-          = new JsonSerializerOptions() {
-              DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-          };
-
+          = new JsonSerializerOptions() {};
 
         public static void WriteJSON(object obj, string fileName)
         {
@@ -25,8 +22,13 @@ namespace PERT_Maker
                 IncludeFields = true
             };
             var jsonString = JsonSerializer.Serialize(obj, options);
-            //Console.WriteLine(jsonString);
+            //Console.WriteLine(jsonString); //Debugging
             File.WriteAllText(fileName, jsonString);
+        }
+
+        public static void WriteTXT(string txt, string filename)
+        {
+            File.AppendAllText(filename, txt + Environment.NewLine);
         }
     }
 }

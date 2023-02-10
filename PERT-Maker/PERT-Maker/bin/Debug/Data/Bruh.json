@@ -1,5 +1,8 @@
 {
-  "projectName": "Bruh",
-  "projectDesc": "test 1",
-  "duration": 0
+  "ProjectName": "Bruh",
+  "ProjectDesc": "hahahahha",
+  "Tasks": null,
+  "Duration": 0,
+  "TimeUnit": null,
+  "TimeUnitShort": null
 }

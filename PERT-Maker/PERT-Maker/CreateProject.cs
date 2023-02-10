@@ -47,21 +47,38 @@ namespace PERT_Maker
                         DialogResult result;
 
                         result = MessageBox.Show(message, caption, buttons);
-                        if (result == System.Windows.Forms.DialogResult.Yes)
-                        {
-                            Close();
-                        }
-                        else
-                        {
-                            return;
-                        }
+                        if (result == System.Windows.Forms.DialogResult.Yes) { Close(); }
+                        else { return; }
                     }
                 }
-                Project newProject = new Project(TitleTextBox.Text)
+                string stu;
+                switch (TimeUnitSelector.Text)
                 {
-                    projectDesc = DescTextBox.Text
+                    case "hours":
+                        stu = "H";
+                        break;
+                    case "days":
+                        stu = "d";
+                        break;
+                    case "weeks":
+                        stu = "w";
+                        break;
+                    case "months":
+                        stu = "M";
+                        break;
+                    default:
+                        stu = "";
+                        break;
+                }
+                Project newProject = new Project
+                {
+                    ProjectName = TitleTextBox.Text,
+                    ProjectDesc = DescTextBox.Text,
+                    TimeUnit = TimeUnitSelector.Text,
+                    TimeUnitShort = stu
                 };
-                JSONFileUtils.WriteJSON(newProject, @"./Data/" + newProject.projectName + ".json");
+                JSONFileUtils.WriteJSON(newProject, @"./Data/" + newProject.ProjectName + ".json");
+                
                 Close();
             }
             else

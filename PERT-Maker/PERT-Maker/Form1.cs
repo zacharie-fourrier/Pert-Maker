@@ -26,31 +26,12 @@ namespace PERT_Maker
         public Form1()
         {
             InitializeComponent();
+            string filename;
+            string text;
             try
             {
-                string filename = @"./Data/config.json";
-                string text = File.ReadAllText(filename);
-                if (text.Length > 0)
-                {
-                    List<string> ls = JsonSerializer.Deserialize<List<string>>(text);
-                    Warnings.Text = "Loaded ./Data/config.json";
-                    if(ls.Count == 0) { return; }
-                    foreach (string file in ls)
-                    {
-                        filename = @"./Data/" + file + ".json";
-                        Console.WriteLine(filename);
-                        text = File.ReadAllText(filename);
-                        var options = new JsonSerializerOptions
-                        {
-                            IncludeFields = true,
-                        };
-                        openedProjects.Add(JsonSerializer.Deserialize<Project>(text, options));
-                    }
-                }
-                else
-                {
-                    Warnings.Text = "Config file is empty, load a project to start working";
-                }
+                filename = @"./Data/config.json";
+                text = File.ReadAllText(filename);
             }
             catch (Exception ex)
             {
@@ -59,12 +40,52 @@ namespace PERT_Maker
                 string newConfig = "[]";
                 File.WriteAllText(@"./Data/config.json", newConfig);
                 Warnings.Text = "Created config files, you can create or import projects now.";
+                text = "";
+            }
+
+            if (text.Length > 0)
+            {
+                List<string> ls;
+                try
+                {
+                    ls = JsonSerializer.Deserialize<List<string>>(text);
+                    Warnings.Text = "Loaded ./Data/config.json";
+                    if (ls.Count == 0) { return; }
+                }
+                catch (Exception ex)
+                {
+                    Warnings.Text = "Error while reopening your projects";
+                    JSONFileUtils.WriteTXT(ex.ToString(), @"./Data/logs.txt");
+                    return;
+                }
+                foreach (string file in ls)
+                {
+                    try
+                    {
+                        filename = @"./Data/" + file + ".json";
+                        text = File.ReadAllText(filename);
+                        var options = new JsonSerializerOptions
+                        {
+                            IncludeFields = true
+                        };
+                        openedProjects.Add(JsonSerializer.Deserialize<Project>(text, options));
+                    }
+                    catch (Exception ex)
+                    {
+                        Warnings.Text = "Loading of " + file + " has gone wrong, cancelling.";
+                        JSONFileUtils.WriteTXT(ex.ToString(), @"./Data/logs.txt");
+                        JSONFileUtils.WriteTXT("Failed loading of " + file, @"./Data/logs.txt");
+                    }
+                }
+            }
+            else
+            {
+                Warnings.Text = "Config file is empty, load a project to start working";
             }
 
             foreach (Project p in openedProjects)
             {
-                TabPage newTab = new TabPage(p.projectName);
-                MainPanel.TabPages.Add(newTab);
+                CreateProjectTab(p);
             }
 
             string folder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\Data\";
@@ -76,10 +97,10 @@ namespace PERT_Maker
                 RegexOptions.Compiled | RegexOptions.IgnoreCase);
                 MatchCollection matches = rx.Matches(f);
                 GroupCollection groups = matches[0].Groups;
-                string filename = groups["filename"].Value;
+                string fileMatched = groups["filename"].Value;
                 foreach (Project p in openedProjects)
                 {
-                    if (filename != p.projectName && filename != "config")
+                    if (fileMatched != p.ProjectName && fileMatched != "config")
                     {
                         //loadProjectToolStripMenuItem.DropDownItems.Add(filename);
                         //Doesnt seem to work and is placed in a weird spot
@@ -104,12 +125,13 @@ namespace PERT_Maker
 
         private void CreateProjectTab(Project p)
         {
-            //MainPanel.TabPages.Add(p.projectName);
+            TabPage newTab = new TabPage(p.ProjectName);
+            MainPanel.TabPages.Add(newTab);
         }
 
         private void loadProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
